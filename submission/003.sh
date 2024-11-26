@@ -14,9 +14,7 @@ if [[ -z "$txids" ]]; then
 fi
 total_outputs=0
 
-# Processar cada transação
 for txid in $txids; do
-  echo "Processing Transaction: $txid"
   tx_details=$(bitcoin-cli getrawtransaction $txid true)
   if [[ -z "$tx_details" ]]; then
     echo "Failed to retrieve transaction $txid"
@@ -32,5 +30,5 @@ for txid in $txids; do
   total_outputs=$((total_outputs + outputs))
 done
 
-echo "$total_outputs"
+echo $total_outputs
 
